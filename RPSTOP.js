@@ -23,27 +23,29 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-const choicesEl = document.getElementById("choices");
-const roundResultEl = document.getElementById("round-result");
-const scoreEl = document.getElementById("score-text");
+document.addEventListener("DOMContentLoaded", () => {
+  const choicesEl = document.getElementById("choices");
+  const roundResultEl = document.getElementById("round-result");
+  const scoreEl = document.getElementById("score-text");
 
-function handleButtonClick(choice) {
-  const computerChoice = getComputerChoice();
-  const result = playRound(choice, computerChoice);
+  function handleButtonClick(choice) {
+    const computerChoice = getComputerChoice();
+    const result = playRound(choice, computerChoice);
 
-  choicesEl.textContent = `Human: ${choice} • Computer: ${computerChoice}`;
-  roundResultEl.textContent = result;
-  scoreEl.textContent = `Scores — Human: ${humanScore}, Computer: ${computerScore}`;
+    choicesEl.textContent = `Human: ${choice} • Computer: ${computerChoice}`;
+    roundResultEl.textContent = result;
+    scoreEl.textContent = `Scores — Human: ${humanScore}, Computer: ${computerScore}`;
 
-  if (humanScore === 5 || computerScore === 5) {
-    const winner = humanScore === 5 ? "You" : "Computer";
-    roundResultEl.textContent = `${winner} win the match!`;
-    document.getElementById("rock").disabled = true;
-    document.getElementById("paper").disabled = true;
-    document.getElementById("scissors").disabled = true;
+    if (humanScore === 5 || computerScore === 5) {
+      const winner = humanScore === 5 ? "You" : "Computer";
+      roundResultEl.textContent = `${winner} won the match!`;
+      document.getElementById("rock").disabled = true;
+      document.getElementById("paper").disabled = true;
+      document.getElementById("scissors").disabled = true;
+    }
   }
-}
 
-document.getElementById("rock").addEventListener("click", () => handleButtonClick("rock"));
-document.getElementById("paper").addEventListener("click", () => handleButtonClick("paper"));
-document.getElementById("scissors").addEventListener("click", () => handleButtonClick("scissors"));
+  document.getElementById("rock").addEventListener("click", () => handleButtonClick("rock"));
+  document.getElementById("paper").addEventListener("click", () => handleButtonClick("paper"));
+  document.getElementById("scissors").addEventListener("click", () => handleButtonClick("scissors"));
+});
